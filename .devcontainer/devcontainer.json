@@ -1,0 +1,21 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+
+	// Open the image defined by the Docker compose file
+	"dockerComposeFile": "compose.yaml",
+	"service": "picow",
+    "workspaceFolder": "/workspaces/rbe2002",
+
+	"customizations": {
+		"vscode": {
+			// Install VSCode extensions
+			"extensions": [
+				"ms-azuretools.vscode-containers",
+				"ms-vscode.cpptools-extension-pack",
+				"mathematic.vscode-pdf"
+			]
+		}
+	}
+}

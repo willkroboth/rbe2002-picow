@@ -1,0 +1,18 @@
+name: rbe2002
+
+services:
+  picow:
+    image: rbe2002/picow
+    # Build the image using the Dockerfile right here
+    build:
+      context: .
+    volumes:
+      # Mount local git and ssh config files so using
+      #  ssh to access GitHub works inside the image
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+      # Include the source code
+      - ../:/workspaces/rbe2002
+    # We don't want the container to exit
+    #  Just have the initial shell wait forever
+    command: sleep infinity
