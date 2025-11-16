@@ -27,7 +27,7 @@ typedef struct {
     float weight;
 } GarbageData;
 
-void i2cRecieve(void* message) {
+void i2cReceive(void* message) {
     GarbageData* data = message;
 
     char output[100];
@@ -42,12 +42,12 @@ void i2cRequest(void* message) {
 void onConnection() {
     wirelessConnected = true;
 
-    i2c_start(I2C_ADDRESS, i2cRecieve, i2cRequest);
+    i2c_start(I2C_ADDRESS, i2cReceive, i2cRequest);
     wirelessPrint("Connected to Pico W\n");
     wirelessPrint("Started I2C communication\n");
 }
 
-void wirelessRecieve(int len, void* payload) {
+void wirelessReceive(int len, void* payload) {
     // Echo wireless messages
     printf("%.*s", len, (char*)payload);
 
@@ -59,7 +59,7 @@ void main() {
     stdio_init_all();
 
     // Intialize wireless
-    wireless_init("KROBOTH_PicoW_AP", "raspberry", 1234, onConnection, wirelessRecieve);
+    wireless_init("KROBOTH_PicoW_AP", "raspberry", 1234, onConnection, wirelessReceive);
 
     // Loop to allow background tasks to keep running
     while (true) {

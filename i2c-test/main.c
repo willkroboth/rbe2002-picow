@@ -20,8 +20,8 @@ void wirelessPrint(char* message) {
     wireless_send(len, message);
 }
 
-void i2cRecieve(char* message) {
-    wirelessPrint("Recieved I2C: ");
+void i2cReceive(char* message) {
+    wirelessPrint("Received I2C: ");
     wirelessPrint(message);
     wirelessPrint("\n");
 }
@@ -40,7 +40,7 @@ void onConnection() {
     printf("Connection callback invoked\n");
     wirelessConnected = true;
 
-    i2c_start(I2C_ADDRESS, i2cRecieve, i2cRequest);
+    i2c_start(I2C_ADDRESS, i2cReceive, i2cRequest);
     wirelessPrint("Connected to Pico W\n");
 }
 
@@ -49,18 +49,18 @@ void onDisconnection() {
     wirelessConnected = false;
 }
 
-void wirelessRecieve(int len, void* payload) {
+void wirelessReceive(int len, void* payload) {
     printf("%.*s", len, (char*)payload);
 
     wireless_send(len, payload);
 }
 
 void main() {
-    // Initalize I/O
+    // Initialize I/O
     stdio_init_all();
 
-    // Intialize wireless
-    wireless_init("KROBOTH_PicoW_AP", "raspberry", 1234, onConnection, wirelessRecieve);
+    // Initialize wireless
+    wireless_init("KROBOTH_PicoW_AP", "raspberry", 1234, onConnection, wirelessReceive);
 
     // Loop to allow background tasks to keep running
     while (true) {

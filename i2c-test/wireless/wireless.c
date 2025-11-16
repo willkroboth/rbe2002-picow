@@ -7,7 +7,7 @@
 
 // Variables
 ConnectionCallback onConnection_cb;
-WirelessRecieve wireless_onReceive;
+WirelessReceive wireless_onReceive;
 dhcp_server_t dhcp_server;
 struct tcp_pcb *server_pcb;
 struct tcp_pcb *client_pcb = NULL;
@@ -42,7 +42,7 @@ static err_t tcp_accept_cb(void *arg, struct tcp_pcb *newpcb, err_t err) {
 
 // Library implementation
 int wireless_init(char* ssid, char* password, uint16_t tcpPort, 
-    ConnectionCallback onConnection, WirelessRecieve onReceive) {
+    ConnectionCallback onConnection, WirelessReceive onReceive) {
     // Set variables
     onConnection_cb = onConnection;
     wireless_onReceive = onReceive;

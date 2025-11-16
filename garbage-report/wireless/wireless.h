@@ -3,11 +3,11 @@
 
 typedef void (*ConnectionCallback)();
 
-typedef void (*WirelessRecieve)(int len, void* payload);
+typedef void (*WirelessReceive)(int len, void* payload);
 
 /* Sets up everything for wireless communication */
 int wireless_init(char* ssid, char* password, uint16_t tcpPort, 
-    ConnectionCallback onConnection, WirelessRecieve onReceive);
+    ConnectionCallback onConnection, WirelessReceive onReceive);
 
 /* Sends a message */
 void wireless_send(int len, void* payload);

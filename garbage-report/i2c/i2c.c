@@ -14,7 +14,7 @@ int rx_length = 0;
 uint8_t tx_buffer[32];
 int tx_length = 0;
 
-I2CHandlePayload i2c_onRecieve;
+I2CHandlePayload i2c_onReceive;
 I2CHandlePayload i2c_onRequest;
 
 i2c_slave_event_t previousState = I2C_SLAVE_FINISH;
@@ -45,7 +45,7 @@ void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event) {
             if (previousState == I2C_SLAVE_RECEIVE) {
                 printf("\n");
                 rx_buffer[rx_length] = '\0'; // null-terminate for safety
-                i2c_onRecieve(rx_buffer);
+                i2c_onReceive(rx_buffer);
             }
 
             rx_length = 0;
@@ -59,8 +59,8 @@ void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event) {
     previousState = event;
 }
 
-void i2c_start(uint8_t address, I2CHandlePayload onRecieve, I2CHandlePayload onRequest) {
-    i2c_onRecieve = onRecieve;
+void i2c_start(uint8_t address, I2CHandlePayload onReceive, I2CHandlePayload onRequest) {
+    i2c_onReceive = onReceive;
     i2c_onRequest = onRequest;
 
     i2c_init(I2C_PORT, 400 * 1000);  // 400kHz
