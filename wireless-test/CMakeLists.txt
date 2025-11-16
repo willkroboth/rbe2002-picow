@@ -19,7 +19,6 @@ add_executable(wireless-test main.c dhcpserver/dhcpserver.c)
 target_include_directories(wireless-test PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/dhcpserver
-    ${CMAKE_CURRENT_LIST_DIR}/dnsserver
 )
 
 # Allow projects to acesses pico libraries
